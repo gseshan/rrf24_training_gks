@@ -4,7 +4,9 @@
 
 	* Set version
 	*version ???
-
+	*Adding a line 
+	*Adding another line at 9:18am on 10/1/2024
+	
 	* Set project global(s)	
 	// User: you 
 	display "`c(username)'" 	//Check username and copy to set project globals by user
@@ -12,7 +14,7 @@
 	* Add file paths to DataWork folder and the Github folder for RRF2024
 	if "`c(username)'" == "" {
         *global onedrive "???/DataWork"
-		global github 	"???/GitHub-rrf-24"
+		global github 	"C:/Users/WB274813/Documents/Github/rrf24_training_gks/"
     }
 	
 	
@@ -21,7 +23,7 @@
 	global code 	"${github}/Stata/Code"
 	global outputs 	"${github}/Stata/Outputs"
 	
-	sysdir set PLUS "???"
+	sysdir set PLUS "$code/ado"
 
 
 	* Install packages 
