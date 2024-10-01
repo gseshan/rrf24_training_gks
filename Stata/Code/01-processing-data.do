@@ -3,40 +3,56 @@
 * Loading data
 *------------------------------------------------------------------------------- 	
 	
+	global onedrive "C:\Users\WB274813\WBG\RRF24\DataWork\"
+	global data 	"${onedrive}\Data"
+	global github 	"C:\Users\WB274813\Documents\Github\rrf24_training_gks"
+	global outputs 	"${github}/Stata/Outputs"
+	
 	* Load TZA_CCT_baseline.dta
-	use "${data}/???", clear
+	use "${data}\Raw\TZA_CCT_baseline.dta", clear
+
 	
 *-------------------------------------------------------------------------------	
 * Checking for unique ID and fixing duplicates
 *------------------------------------------------------------------------------- 		
 
+	*isid hhid
+	*ssc install iefieldkit, replace
+	
 	* Identify duplicates 
-	ieduplicates	??? ///
+	ieduplicates	hhid ///
 					using "${outputs}/duplicates.xlsx", ///
-					uniquevars(???) ///
-					keepvars(???) ///
+					uniquevars(key) ///
+					keepvars(vid enid submissionday) ///
 					nodaily
 					
+	*isid hhid
 	
 *-------------------------------------------------------------------------------	
 * Define locals to store variables for each level
 *------------------------------------------------------------------------------- 							
 	
 	* IDs
-	local ids 		???	
-	
+	*local ids 		???	
+	local ids 		vid hhid enid
+		
 	* Unit: household
-	local hh_vars 	???
+
+	local hh_vars floor - n_elder ///
+					food_cons - submissionday
 	
 	* Unit: Household-memebr
-	local hh_mem	???
+ 
+	local hh_member gender age read clinic_visit sick days_sick ///
+	treat_fin treat_cost ill_impact days_impact
+	
 	
 	
 	* define locals with suffix and for reshape
 	foreach mem in `hh_mem' {
 		
-		local mem_vars 		???
-		local reshape_mem	???
+		local mem_vars 		"`mem_vars' `mem'_*"
+		local reshape_mem	"`reshape_mem' `mem'_"
 	}
 		
 	
