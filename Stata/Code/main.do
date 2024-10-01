@@ -5,6 +5,11 @@
 	* Set version
 	*version ???
 
+	*Adding a line 
+	*Adding another line at 9:18am on 10/1/2024
+	*Add line to comment
+	
+
 	* Set project global(s)	
 	// User: you 
 	display "`c(username)'" 	//Check username and copy to set project globals by user
