@@ -60,7 +60,7 @@
 * Tidy Data: HH
 *-------------------------------------------------------------------------------	
 
-	preserve 
+	*preserve 
 		
 		* Keep HH vars
 		keep `ids' `hh_vars'
@@ -75,8 +75,37 @@
 		
 				
 		
-		* Turn numeric variables with negative values into missings
-		ds, has(type ???)
+
+		*fixing submission date
+		gen submissiondate=date(submissionday,"YMD hms")
+		format submissiondate %td
+			
+		encode ar_farm_unit, gen(ar_unit)
+		labelbook ar_unit
+		
+		destring duration, replace
+		
+		*clean crop other
+		replace crop_other = proper(crop_other) 
+		*labelbook crop
+		replace crop = 40 if regex(crop_other, "Coconut")==1
+		replace crop = 41 if regex(crop_other, "Sesame")==1
+		label define df_CROP 40 "Coconut" 41 "Sesame", add
+		
+		
+			* Turn numeric variables with negative values into missings
+		*ds, has(type ???)
+		ds, has(type string)	
+		ds, has(type numeric)
+		global numVars `r(varlist)'
+		
+		foreach numVar of global numVars {
+			recode `numVar' (-88 = .d)
+		}
+		
+		
+		
+		
 		global ??? ???
 
 		foreach numVar of global numVars {
