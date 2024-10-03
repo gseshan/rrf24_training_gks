@@ -1,7 +1,5 @@
 # Reproducible Research Fundamentals 2024 - Stata
 
-Training test by GS
-
 Welcome to the **Reproducible Research Fundamentals 2024** training repository. This repository will guide you through all the exercises across the following stages:
 
 - **0. GitHub Workflow**: Gain essential GitHub skills, including how to create branches, commit changes, and open pull requests.
@@ -14,3 +12,10 @@ Feel free to update this README as you progress through the sessions and customi
 
 Remember this is what you will share with your peer at the end of the training for review. 
 
+*Change the directory in line 13 in main.do
+*Dependencies (i.e. ado files) are referenced in line 25 in main.do 
+*raw data used: multiple 
+
+	"C:\Users\WB274813\WBG\RRF24\DataWork\Data\Raw\TZA_CCT_baseline.dta"
+	"C:\Users\WB274813\WBG\RRF24\DataWork\Data\Raw\treat_status.dta"
+	"C:\Users\WB274813\WBG\RRF24\DataWork\Data\Raw\TZA_amenity.csv"

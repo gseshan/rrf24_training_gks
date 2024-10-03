@@ -10,18 +10,19 @@
 	display "`c(username)'" 	//Check username and copy to set project globals by user
 	
 	* Add file paths to DataWork folder and the Github folder for RRF2024
-	if "`c(username)'" == "wb274813" {
+	if "`c(username)'" == "WB274813" {
         global onedrive "C:\Users\WB274813\WBG\RRF24\DataWork"
 		global github 	"C:\Users\WB274813\Documents\Github\rrf24_training_gks"
     }
 	
 	
-	* Set globals for sub-folders 
-	global data 	"${onedrive}/Data"
-	global code 	"${github}/Stata/Code"
-	global outputs 	"${github}/Stata/Outputs"
 	
-	sysdir set PLUS "$(code}/ado"
+	* Set globals for sub-folders 
+	global data 	"${onedrive}\Data"
+	global code 	"${github}\Stata\Code"
+	global outputs 	"${github}\Stata\Outputs"
+	
+	sysdir set PLUS "${code}/ado"
 
 /*
 	* Install packages 
@@ -36,7 +37,9 @@
 */
 	* Run do files 
 	* Switch to 0/1 to not-run/run do-files 
-	if (0) do "${code}/01-processing-data.do"
-
+	if (1) do "${code}\01-processing-data.do"
+	if (1) do "${code}\02-constructing-data.do"
+	if (1) do "${code}\03-analyzing-data.do"
+	
 
 * End of do-file!	

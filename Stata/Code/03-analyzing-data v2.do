@@ -153,11 +153,10 @@
 	use "${data}/Final/TZA_amenity_analysis.dta", clear
 	
 	* createa  variable to highlight the districts in sample
-	*encode district, gen(district_code)
+	encode district, gen(district_code)
 	*Kibaha - 6, Chamwino - 3, Bagamayo - 1
-	*gen in_sample = inlist(district_code, 1, 3, 6)
-	gen in_sample = inlist(district, 1, 3, 6)
-		
+	gen in_sample = inlist(district_code, 1, 3, 6)
+	
 	* Separate indicators by sample
 	separate n_school	, by(in_sample)
 	separate n_medical	, by(in_sample)
